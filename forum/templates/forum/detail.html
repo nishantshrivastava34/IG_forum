@@ -1,0 +1,8 @@
+<h1>{{question.question_text}}</h1>
+{% if question.answer_set.all %}
+	{% for answer in question.answer_set.all %}
+		<li>{{answer}}</li>
+	{% endfor%}
+{% else %}
+ <p> No answers yet!!!</p>
+{% endif %}
