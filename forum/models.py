@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
+from django.contrib.auth.models import User
 # Create your models here.
 from django.db import models
 class Question(models.Model):
@@ -17,6 +18,7 @@ class Answer(models.Model):
 	answer_time = models.TimeField('ans_time')
 	upvotes = models.IntegerField(default = 0)
 	downvotes = models.IntegerField(default = 0)
+	auser = models.ForeignKey(User , on_delete=models.CASCADE)
 	def __str__(self):
 		return self.answer_text
 
@@ -24,6 +26,12 @@ class Qcomment(models.Model):
 	cquestion = models.ForeignKey('Question', on_delete=models.CASCADE)
 	qcomment_text = models.CharField(max_length=255)
 	qcomment_time = models.TimeField('qcomment_time')
+	qcuser = models.ForeignKey(
+        User , 
+        on_delete=models.CASCADE,
+        
+        
+    )
 	def __str__(self):
 		return self.qcomment_text
 
@@ -31,6 +39,11 @@ class Acomment(models.Model):
 	answer = models.ForeignKey('Answer' , on_delete=models.CASCADE)
 	acomment_text = models.CharField(max_length=255)
 	acomment_time = models.DateTimeField('acomment_time')
+	acuser = models.ForeignKey(
+        User , 
+        on_delete=models.CASCADE,
+
+    )
 	def __str__(self):
 		return self.acomment_text
 

@@ -1,0 +1,7 @@
+<h1> ANSWER BOX </h1>
+<form action = "{% url 'forum:detail' question.id %}"  method = "post" >
+{% csrf_token %}
+<textarea>
+</textarea><br>
+<input type = 'submit' value=" Enter your text here" name = "ans_text">
+</form>
